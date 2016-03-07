@@ -1,6 +1,7 @@
 package com.ebookstore.web.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +22,16 @@ public class ManageServlet extends HttpServlet {
 		String op = request.getParameter("op");
 		if("addCategory".equals(op)){
 			addCategory(request,response);
+		}else if("showAllCategory".equals(op)){
+			showAllCategory(request,response);
 		}
+	}
+
+	public void showAllCategory(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException  {
+		List<Category> cs = s.findAllCategories();
+		request.setAttribute("cs", cs);
+		request.getRequestDispatcher("/manage/listCategory.jsp").forward(request, response);
 	}
 
 	public void addCategory(HttpServletRequest request,
