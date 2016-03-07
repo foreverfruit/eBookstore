@@ -12,16 +12,16 @@ import com.ebookstore.utils.DBCPUtil;
 
 public class CategoryDaoImpl implements CategoryDao {
 
-	private QueryRunner qu = new QueryRunner(DBCPUtil.getDataSource());
+	private QueryRunner qr = new QueryRunner(DBCPUtil.getDataSource());
 	
 	@Override
 	public void save(Category category) {
 		try {
 			String sql = "insert into categories (id,name,description) values(?,?,?);";
 			Object[] parameter = new Object[]{category.getId(),category.getName(),category.getDescription()};
-			qu.update(sql,parameter);
+			qr.update(sql,parameter);
 		} catch (Exception e) {
-			throw new RuntimeException("save category exception!", e.getCause());
+			throw new RuntimeException("save category exception!", e);
 		}
 	}
 
@@ -30,9 +30,9 @@ public class CategoryDaoImpl implements CategoryDao {
 		List<Category> result = null;
 		try {
 			String sql = "select * from categories";
-			result = qu.query(sql, new BeanListHandler<Category>(Category.class));
+			result = qr.query(sql, new BeanListHandler<Category>(Category.class));
 		} catch (Exception e) {
-			throw new RuntimeException("find all category exception!", e.getCause());
+			throw new RuntimeException("find all category exception!", e);
 		}
 		return result;
 	}
@@ -42,9 +42,9 @@ public class CategoryDaoImpl implements CategoryDao {
 		Category result = null;
 		try {
 			String sql = "select * from categories where id=?;";
-			result = qu.query(sql, new BeanHandler<Category>(Category.class),categoryid);
+			result = qr.query(sql, new BeanHandler<Category>(Category.class),categoryid);
 		} catch (Exception e) {
-			throw new RuntimeException("find category of " + categoryid +" exception!", e.getCause());
+			throw new RuntimeException("find category of " + categoryid +" exception!", e);
 		}
 		return result;
 	}
