@@ -6,6 +6,7 @@ import com.ebookstore.dao.CategoryDao;
 import com.ebookstore.dao.impl.CategoryDaoImpl;
 import com.ebookstore.domain.Category;
 import com.ebookstore.service.BusinessService;
+import com.ebookstore.utils.IdGenertor;
 
 public class BusinessServiceImpl implements BusinessService {
 
@@ -13,6 +14,8 @@ public class BusinessServiceImpl implements BusinessService {
 	
 	@Override
 	public void addCategory(Category category) {
+		// 为category添加id
+		category.setId(IdGenertor.genGUID());
 		cDao.save(category);
 	}
 

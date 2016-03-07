@@ -6,9 +6,11 @@ body{
 }
 
 table{
-	
-	font-size: 12px;
-	
+	font-size:12px;
+}
+
+textarea{
+	resize:none;
 }
 
 /* 奇偶栏目class选择器 */
