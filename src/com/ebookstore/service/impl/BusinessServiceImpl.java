@@ -65,7 +65,7 @@ public class BusinessServiceImpl implements BusinessService {
 		if(pageNum!=null&&!pageNum.equals("")){
 			pageIndex = Integer.parseInt(pageNum);
 		}
-		int totalRecordsCount = bDao.getTotalRecordsCount();
+		int totalRecordsCount = bDao.getTotalRecordsCount(categoryid);
 		Page page = new Page(pageIndex, totalRecordsCount);
 		List<Book> records = bDao.findPageRecords(page.getStartRecordIndex(),page.getPageSize(),categoryid);
 		page.setRecords(records);

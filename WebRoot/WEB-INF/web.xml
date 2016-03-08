@@ -23,9 +23,18 @@
     <servlet-name>ManageServlet</servlet-name>
     <servlet-class>com.ebookstore.web.controller.ManageServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>ClientServlet</servlet-name>
+    <servlet-class>com.ebookstore.web.controller.ClientServlet</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>ManageServlet</servlet-name>
     <url-pattern>/manage/ManageServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ClientServlet</servlet-name>
+    <url-pattern>/client/ClientServlet</url-pattern>
   </servlet-mapping>
 
 </web-app>
