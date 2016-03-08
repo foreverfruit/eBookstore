@@ -35,6 +35,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <a href="${pageContext.request.contextPath}/manage/ManageServlet?op=showAllCategory">登陆</a>
     <a href="${pageContext.request.contextPath}/manage/ManageServlet?op=addBookUI">免费注册</a>
     <a href="${pageContext.request.contextPath}/manage/ManageServlet?op=showPageBooks">我的订单</a>
-    <a href="">购物车</a>
+    <a href="${pageContext.request.contextPath}/cart.jsp">购物车</a>
     <br/>
     <br/>

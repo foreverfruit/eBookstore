@@ -15,6 +15,7 @@ import com.ebookstore.domain.Category;
 import com.ebookstore.service.BusinessService;
 import com.ebookstore.service.impl.BusinessServiceImpl;
 import com.ebookstore.web.beans.Cart;
+import com.ebookstore.web.beans.CartItem;
 
 @SuppressWarnings("serial")
 public class ClientServlet extends HttpServlet {
@@ -32,7 +33,43 @@ public class ClientServlet extends HttpServlet {
 			showCategoryBooks(request,response);
 		}else if("buy".equals(op)){
 			buy(request,response);
+		}else if("changeCount".equals(op)){
+			changeCount(request,response);
+		}else if("delOne".equals(op)){
+			delOne(request,response);
+		}else if("delAll".equals(op)){
+			delAll(request,response);
 		}
+	}
+
+	public void delAll(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException{
+		request.getSession().removeAttribute("cart");
+		response.sendRedirect(request.getContextPath()+"/cart.jsp");
+	}
+
+	public void delOne(HttpServletRequest request, 
+			HttpServletResponse response) throws ServletException, IOException {
+		String bid = request.getParameter("bookid");
+		
+		HttpSession hs = request.getSession();
+		Cart cart = (Cart) hs.getAttribute("cart");
+		cart.getItems().remove(bid);
+
+		response.sendRedirect(request.getContextPath()+"/cart.jsp");
+	}
+
+	public void changeCount(HttpServletRequest request,
+			HttpServletResponse response)throws ServletException, IOException   {
+		String bid = request.getParameter("bookid");
+		int count = Integer.parseInt(request.getParameter("count"));
+		
+		HttpSession hs = request.getSession();
+		Cart cart = (Cart) hs.getAttribute("cart");
+		CartItem cartItem = cart.getItems().get(bid);
+		cartItem.setCount(count);
+
+		response.sendRedirect(request.getContextPath()+"/cart.jsp");
 	}
 
 	public void buy(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException  {
