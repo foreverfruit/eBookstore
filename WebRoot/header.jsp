@@ -12,20 +12,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'index.jsp' starting page</title>
+    <title>EBookStore</title>
+    
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+	
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resource/main.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath }/resource/util.js"></script>
+
   </head>
   
   <body>
-  	<jsp:forward page="/client/ClientServlet">
-    	<jsp:param value="showAllBooks" name="op"/>
-    </jsp:forward>
-  </body>
-</html>
+    <br/>
+    <br/>
+    <h1>欢迎来到eBookstore</h1>
+    <br/>
+    <br/>
+    <a href="${pageContext.request.contextPath}/">首页</a>
+    <a href="${pageContext.request.contextPath}/manage/ManageServlet?op=showAllCategory">登陆</a>
+    <a href="${pageContext.request.contextPath}/manage/ManageServlet?op=addBookUI">免费注册</a>
+    <a href="${pageContext.request.contextPath}/manage/ManageServlet?op=showPageBooks">我的订单</a>
+    <a href="">购物车</a>
+    <br/>
+    <br/>

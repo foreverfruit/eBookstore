@@ -103,4 +103,17 @@ public class BookDaoImpl implements BookDao {
 		return result;
 	}
 
+	@Override
+	public int getTotalRecordsCount(String categoryid) {
+		Object result = null;
+		try {
+			String sql = "select count(*) from books where categoryid=?;";
+			// 该结果Object实际类型是Long类型数据
+			result = qr.query(sql, new ScalarHandler(1),categoryid);
+			return ((Long)result).intValue();
+		} catch (Exception e) {
+			throw new RuntimeException("find books count exception!", e);
+		}
+	}
+
 }
